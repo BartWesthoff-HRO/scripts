@@ -1,0 +1,94 @@
+//|-------------------------------|
+// Wed Jan 13 2021 21:50:56
+// i used aim sensetivty 6 and tap to interact (due to getting ammo from the box)
+// i Used flipped
+// made by henkiespenkie44#3567 (IG/YT)
+//|-------------------------------|
+
+int fire = 0;
+
+
+main {
+    if(TRUE) {
+   // swap(PS3_R1, PS3_R2); use this if you play default instead of flipped (delete //)
+   // swap(PS3_L1, PS3_L2);
+    	
+	  	set_val(PS4_RX, 35); // aim right  
+	  	
+	    combo_run(ring); // if you dont want to use the ring you can comment this line.
+	    combo_run(reload); 
+	    if(fire < 1){
+    		combo_run(fire);
+    		combo_run(aim);
+    	}
+     
+    
+    }
+}
+
+combo reload {
+    fire = 1;
+    set_val(PS4_RY, 100); // aim under
+    wait(1000)
+    set_val(PS4_SQUARE, 100);
+    wait(40);
+    set_val(PS4_SQUARE, 0);
+    wait(40);
+    set_val(PS4_SQUARE, 100);
+    wait(40);
+    set_val(PS4_SQUARE, 0);
+    wait(40);
+    set_val(PS4_SQUARE, 100);
+    wait(40);
+    set_val(PS4_SQUARE, 0);
+    wait(40);
+    set_val(PS4_RY, -100); // aimv up
+    wait(500);
+    set_val(PS4_RY, 0); // aim up
+    fire = 0;
+    wait(80);
+    set_val(PS4_RY, 10); // aim under
+    
+    // wait time for bullets to get to 0 9 x30 seconds and 3 seconds extra to be sure
+    // 50 bullets is 15 seconds so 225 are 67 seconds
+    // i got 4 clips total so its (30x2) x 4 + (7x4)= (240 + 28) = 268
+    // but we need to disctract reload times so i use 268 * 0.9 = ~240 so i need 8 blocks of 30 seconds
+    wait(30000);
+    wait(30000);
+    wait(30000);
+    wait(30000);
+    
+    wait(30000);
+    wait(30000);
+    wait(30000);
+    }
+		
+		
+combo ring {
+    wait(30000);
+    set_val(PS4_L2, 100);
+    set_val(PS4_R2, 100);
+    wait(40);
+    set_val(PS4_L2, 0);
+    set_val(PS4_R2, 0);
+    wait(40);
+    }
+
+
+// I used fire and aim apart from eachother so it shoots less then it aims. Efficient for ammo and spinning around a dead zone.
+combo fire {
+		set_val(PS4_R1, 100)
+		wait(80);
+		set_val(PS4_R1, 0);
+		set_val(PS4_RY, 10); // aim under
+		wait(200);
+}
+
+combo aim {
+		set_val(PS4_L1, 100);
+		wait(80);
+		set_val(PS4_L1, 0);
+		wait(60);
+}
+
+
